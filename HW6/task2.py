@@ -25,10 +25,10 @@ goods_cost = 0
 goods_gluten_free_cost = 0
 
 for item in goods:
-    items_cost = item.get('price') * item.get('stock')
-    goods_cost += items_cost
+    item_cost = item.get('price', 0) * item.get('stock', 0)
+    goods_cost += item_cost
     if item.get('gluten') == False:
-        goods_gluten_free_cost += items_cost
+        goods_gluten_free_cost += item_cost
 
 print('total cost:', goods_cost)
 print('gluten-free cost:', goods_gluten_free_cost)
