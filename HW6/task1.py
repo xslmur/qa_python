@@ -31,10 +31,13 @@ for user in users:
     if user.get('gender') == 'male' and user.get('hair', {}).get('color') == 'Brown':
         brown_males_count += 1
         brown_males_age += user.get('age', 0)
-    if user.get('address').get('city') == 'Louisville':
+    if user.get('address', {}).get('city') == 'Louisville':
         users_from_louisville.append(user)
 
-print('average age for males with brown hair:', brown_males_age / brown_males_count)
+if brown_males_count:
+    print('average age for males with brown hair:', brown_males_age / brown_males_count)
+else:
+    print('no males with brown hair')
 
 print('users from Louisville:')
 for user in users_from_louisville:
