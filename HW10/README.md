@@ -1,4 +1,4 @@
-h3. ДЗ 10. Дебаг коду
+### ДЗ 10. Дебаг коду
 run:
 ```shell
 (venv) sl@sl:~/w/qa_python/HW10$ python for_debug_hw_lesson4_refactored.py 
@@ -29,7 +29,7 @@ flake8/mypy:
 Success: no issues found in 1 source file
 ```
 ---
-h3. ДЗ 11. Написання функцій та їх тестування
+### ДЗ 11. Написання функцій та їх тестування
 run:
 ```shell
 (venv) sl@sl:~/w/qa_python/HW10$ python library.py 
