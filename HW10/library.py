@@ -22,7 +22,7 @@ def remove_lowercase(input_string: str) -> str:
     :return: truncated and filtered string
     :rtype: str
     """
-    ret = ''.join(filter(lambda c: c.isupper(), input_string[:25]))
+    ret = ''.join(filter(lambda c: c.isupper(), input_string))[:25]
     return ret
 
 

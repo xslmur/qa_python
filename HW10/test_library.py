@@ -7,7 +7,8 @@ testcases_remove_lowercase_positive = [
     ('abc', ''),
     ('ABC', 'ABC'),
     ('', ''),
-    ('X' * 50, 'X' * 25)
+    ('X' * 50, 'X' * 25),
+    ('Qw' * 100, 'Q' * 25)
 ]
 
 
