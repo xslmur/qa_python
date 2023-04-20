@@ -31,6 +31,7 @@ refactoring notes:
     * use python format() width specs instead of '\t'
     * dynamically compute spacing between columns
     * swap textwrap.shorten and ljust for item title
+    * fix: round price to the 0.00 precision before multiplication
 """
 
 
@@ -67,7 +68,22 @@ def get_items() -> list:
     return receipt_items
 
 
+def quantized(val: str | Decimal) -> Decimal:
+    """
+    casts input string or Decimal to the Decimal with precision 0.00
+
+    :param val: value to cast
+    :return: Decimal with precision 0.00
+    """
+    # from: https://docs.python.org/3/library/decimal.html#decimal-faq
+    two_places = Decimal(10) ** -2
+    if isinstance(val, str):
+        val = Decimal(val)
+    return val.quantize(two_places)
+
+
 def print_receipt(items: list, width: int = 80, title_width: int = 20) -> None:
+
     header_names = ['Товар', 'кількість', 'ціна', 'вартість']
 
     # compute free space between columns
@@ -97,18 +113,17 @@ def print_receipt(items: list, width: int = 80, title_width: int = 20) -> None:
             width=title_width,
             placeholder='...').ljust(title_width, '.')
 
-        item_total_cost = Decimal(quantity) * Decimal(price)
-        item_total_cost_right_format = item_total_cost.quantize(
-            Decimal('1.00'))
+        quantity = int(quantity)
+        price = quantized(price)
 
-        price_right_format = Decimal(price).quantize(Decimal('1.00'))
+        item_total_cost = quantized(price * quantity)
 
-        total_quantity += int(quantity)
-        total_cost += item_total_cost_right_format
+        total_quantity += quantity
+        total_cost += item_total_cost
 
         print(printing_template.format(
             title_shortened, quantity,
-            price_right_format, item_total_cost_right_format))
+            price, item_total_cost))
 
     # print total
     print('~' * width)
@@ -126,6 +141,6 @@ def print_receipt(items: list, width: int = 80, title_width: int = 20) -> None:
 
 
 # print_receipt([
-#     ('some long item omiiit', '2', '2.0'),
-#     ('short name', '3', '3.3')])
+#     ('some long item omiiit', '3', '6.66666'),
+#     ('short name', '7', '5.45555')])
 print_receipt(get_items())
