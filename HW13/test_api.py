@@ -90,7 +90,7 @@ class TestRegister:
         # set empty field
         setattr(malformed_user.user_register, field_name, '')
 
-        result = malformed_user.regdeepcopyister()
+        result = malformed_user.register()
 
         # delete it in cases we got 'ok'
         if result['status'] == 'ok':
