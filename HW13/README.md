@@ -54,3 +54,8 @@ FAILED test_api.py::TestRegister::test_user_register_wrong_password[tttttttttt] 
 (venv) sl@sl:~/w/qa_python/HW13$ 
 
 ```
+note:
+```shell
+test_api.py::TestRegister::test_user_register_wrong_password[tttttttttt] FAILED                                                                                                                   [ 70%]
+```
+is expected to be failed coz API has bug in the password field validator
