@@ -22,11 +22,19 @@ class CarData:
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+    def __repr__(self):
+        return 'CarData {}'.format(self.__dict__)
+
 
 class Car:
     def __init__(self, data):
         self.id = data['id']
         self.data = CarData(data)
+
+    def __repr__(self):
+        return 'Car id:{}, data:{}'.format(
+            self.id, self.data.__dict__
+        )
 
 
 class Cars:
