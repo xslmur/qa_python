@@ -74,7 +74,7 @@ def read_from_mongodb_to_model(collection, document_filter):
 
 
 def clear_mongodb(collection, document_filter):
-    print("\n> remove from mongodb collection '{collection.name}' by filter:", document_filter)
+    print(f"\n> remove from mongodb collection '{collection.name}' by filter:", document_filter)
     collection.delete_many(document_filter)
 
 
