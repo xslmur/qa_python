@@ -56,21 +56,35 @@ class PersonModel:
         return f"PersonModel(id:{self._id}, name:{self.name}, email:{self.email}, age:{self.age}, pets:{self.pets!r}))"
 
 
-def insert_from_file_to_mongodb():
-    with open('data.json') as file:
+def insert_from_file_to_mongodb(file_name, collection):
+    with open(file_name) as file:
         file_data = json.load(file)
-
+    print(f"> insert json from the file '{file_name}' to mongodb collection '{collection.name}':\n{file_data}")
     collection.insert_many(file_data)
+
+
+def read_from_mongodb_to_model(collection, document_filter):
+    print(f"\n> read from mongodb collection '{collection.name}' and parse to the model by filter:", document_filter)
+
+    person_json_data = collection.find_one(document_filter)
+    print('json:\n', person_json_data)
+
+    person = PersonModel.from_json(person_json_data)
+    print('person:\n', person)
+
+
+def clear_mongodb(collection, document_filter):
+    print("\n> remove from mongodb collection '{collection.name}' by filter:", document_filter)
+    collection.delete_many(document_filter)
 
 
 if __name__ == "__main__":
     mongo_client = MongoClient("mongodb://localhost:27017")
     db = mongo_client["hillel_db"]
-    collection = db["my_collection_3"]
+    db_collection = db["my_collection_3"]
 
-    person_json_data = collection.find_one({"name": "Cheadle Yorkshire"})
-    print(type(person_json_data))
-    print('json:\n', person_json_data)
+    doc_filter = {"name": "Cheadle Yorkshire"}
 
-    person = PersonModel.from_json(person_json_data)
-    print('person:\n', person)
+    insert_from_file_to_mongodb('data.json', db_collection)
+    read_from_mongodb_to_model(db_collection, doc_filter)
+    clear_mongodb(db_collection, doc_filter)

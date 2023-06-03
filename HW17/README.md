@@ -1,10 +1,14 @@
 ```shell
-/home/sl/w/qa_python/HW17/.env/bin/python /home/sl/w/qa_python/HW17/data.py 
-<class 'dict'>
+> insert json from the file 'data.json' to mongodb collection 'my_collection_3':
+[{'name': 'Cheadle Yorkshire', 'email': 'cheadyork@gmail.com', 'age': '25', 'pets': [{'pet_name': 'Galaxy', 'breed': 'Siamese', 'pet_age': '2', 'about_pet': {'favourite_toy': 'minnie_mouse', 'temperament': 'calm'}}]}]
+
+> read from mongodb collection 'my_collection_3' and parse to the model by filter: {'name': 'Cheadle Yorkshire'}
 json:
- {'_id': ObjectId('647a738199a15969dba954cf'), 'name': 'Cheadle Yorkshire', 'email': 'cheadyork@gmail.com', 'age': '25', 'pets': [{'pet_name': 'Galaxy', 'breed': 'Siamese', 'pet_age': '2', 'about_pet': {'favourite_toy': 'minnie_mouse', 'temperament': 'calm'}}]}
+ {'_id': ObjectId('647b4f903406b9a15f17b764'), 'name': 'Cheadle Yorkshire', 'email': 'cheadyork@gmail.com', 'age': '25', 'pets': [{'pet_name': 'Galaxy', 'breed': 'Siamese', 'pet_age': '2', 'about_pet': {'favourite_toy': 'minnie_mouse', 'temperament': 'calm'}}]}
 person:
- PersonModel(id:647a738199a15969dba954cf, name:Cheadle Yorkshire, email:cheadyork@gmail.com, age:25, pets:[PetModel(pet_name:Galaxy, pet_age:2, about:PetAboutModel(favourite_toy:minnie_mouse, minnie_mouse:calm))]))
+ PersonModel(id:647b4f903406b9a15f17b764, name:Cheadle Yorkshire, email:cheadyork@gmail.com, age:25, pets:[PetModel(pet_name:Galaxy, pet_age:2, about:PetAboutModel(favourite_toy:minnie_mouse, minnie_mouse:calm))]))
+
+> remove from mongodb collection '{collection.name}' by filter: {'name': 'Cheadle Yorkshire'}
 
 Process finished with exit code 0
 ```
