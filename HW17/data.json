@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Cheadle Yorkshire",
+        "email": "cheadyork@gmail.com",
+        "age": "25",
+        "pets": [
+            {
+                "pet_name": "Galaxy",
+                "breed": "Siamese",
+                "pet_age": "2",
+                "about_pet": {
+                    "favourite_toy": "minnie_mouse",
+                    "temperament": "calm"
+                }
+            }
+        ]
+    }
+]
